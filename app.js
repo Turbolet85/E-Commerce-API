@@ -3,6 +3,10 @@ require('express-async-errors');
 
 const express = require('express');
 const app = express();
+
+//routers import
+const authRouter = require('./routes/authRoutes');
+
 //imports
 const connectDB = require('./db/connect');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -17,6 +21,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
    res.send('e-commerce-API');
 });
+
+app.use('/api/v1/auth', authRouter);
 
 //custom middleware
 app.use(notFound);
